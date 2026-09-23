@@ -152,11 +152,11 @@ main {
     position: absolute;
     inset: 0;
     z-index: -3;
-    background-image: url("../assets/images/hero-background.jpg");
-    background-position: center;
-    background-size: cover;
+    background-image: url("images/gallery/IMG-20260901-WA0085.jpg");
+    background-position: center 22%;
+    background-size: 115% auto;
     background-repeat: no-repeat;
-    transform: scale(1.02);
+    transform: scale(1.08);
     animation: heroBackgroundIn 2s ease-out both;
 }
 
@@ -167,9 +167,9 @@ main {
     background:
         linear-gradient(
             180deg,
-            rgba(248, 244, 236, 0.35) 0%,
-            rgba(248, 244, 236, 0.68) 50%,
-            rgba(248, 244, 236, 0.42) 100%
+            rgba(248, 244, 236, 0.10) 0%,
+            rgba(248, 244, 236, 0.25) 50%,
+            rgba(248, 244, 236, 0.12) 100%
         );
 }
 
