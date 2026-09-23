@@ -1,0 +1,10 @@
+<svg width="900" height="1125" viewBox="0 0 900 1125" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="1125" fill="#F5EFE9"/>
+  <rect x="40" y="40" width="820" height="1045" rx="56" fill="#FBF8F5" stroke="#C7A76A" stroke-width="3"/>
+  <rect x="120" y="122" width="660" height="660" rx="40" fill="#EADFD5"/>
+  <circle cx="450" cy="390" r="165" fill="#D3C0AC" opacity="0.75"/>
+  <path d="M330 760C357 667 394 620 450 620C506 620 544 666 570 760H330Z" fill="#5A1F2A" opacity="0.75"/>
+  <rect x="242" y="820" width="416" height="122" rx="20" fill="#F1E4D7"/>
+  <text x="450" y="882" text-anchor="middle" fill="#5A1F2A" font-size="38" font-family="Georgia, 'Times New Roman', serif" letter-spacing="4">OFFICIAL PHOTO</text>
+  <text x="450" y="920" text-anchor="middle" fill="#5A1F2A" font-size="26" font-family="Arial, sans-serif" letter-spacing="3">PENDING</text>
+</svg>

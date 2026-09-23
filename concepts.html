@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luxury Wedding Concept Board</title>
+    <style>
+      :root {
+        --ivory: #f7f1ea;
+        --ivory-strong: #f2e7dd;
+        --gold: #c7a76a;
+        --gold-soft: #d9c39b;
+        --burgundy: #5a1f2a;
+        --charcoal: #2b1f1d;
+        --taupe: #d7c9be;
+        --paper: #fbf7f3;
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: linear-gradient(180deg, #f8f3ef, #efe7df);
+        font-family: Inter, sans-serif;
+        color: var(--charcoal);
+      }
+
+      .page {
+        max-width: 1500px;
+        margin: 0 auto;
+        padding: 40px 24px 80px;
+      }
+
+      h1 {
+        text-align: center;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-size: 2rem;
+        margin-bottom: 18px;
+        color: var(--burgundy);
+      }
+
+      .subtitle {
+        text-align: center;
+        margin: 0 auto 36px;
+        max-width: 900px;
+        color: #594742;
+        line-height: 1.6;
+      }
+
+      .concept-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 28px;
+      }
+
+      .concept-card {
+        background: rgba(255,255,255,0.28);
+        border: 1px solid rgba(199, 167, 106, 0.28);
+        border-radius: 26px;
+        padding: 18px;
+        box-shadow: 0 20px 40px rgba(43,31,29,0.08);
+      }
+
+      .concept-title {
+        text-align: center;
+        font-size: 1.1rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin: 10px 0 18px;
+        color: var(--burgundy);
+      }
+
+      .canvas {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 9 / 16;
+        border-radius: 26px;
+        overflow: hidden;
+        border: 1px solid rgba(199, 167, 106, 0.5);
+        background: var(--ivory);
+      }
+
+      .canvas::before {
+        content: "";
+        position: absolute;
+        inset: 42px 42px 42px;
+        border: 1px solid rgba(199,167,106,0.35);
+        border-radius: 18px;
+      }
+
+      .decor {
+        position: absolute;
+        pointer-events: none;
+      }
+
+      .branch {
+        border: 1px solid rgba(199,167,106,0.34);
+        border-color: rgba(199,167,106,0.36);
+        border-bottom: none;
+        border-left: none;
+        border-radius: 50%;
+        transform: rotate(12deg);
+      }
+
+      .classical .branch.a { width: 190px; height: 140px; left: 36px; top: 58px; }
+      .classical .branch.b { width: 190px; height: 140px; right: 36px; top: 58px; transform: rotate(-12deg) scaleX(-1); }
+      .classical .branch.c { width: 200px; height: 120px; left: 50%; top: 85%; transform: translateX(-50%) rotate(180deg); }
+
+      .modern .branch.a { width: 140px; height: 140px; left: 80px; top: 120px; border-radius: 0; border: 1px solid rgba(199,167,106,0.18); }
+      .modern .branch.b { width: 140px; height: 140px; right: 80px; top: 120px; border-radius: 0; border: 1px solid rgba(199,167,106,0.18); }
+      .modern .branch.c { width: 260px; height: 120px; left: 50%; bottom: 120px; transform: translateX(-50%); border-radius: 0; border-top: 1px solid rgba(199,167,106,0.2); border-left: none; border-right: none; }
+
+      .romantic .branch.a { width: 180px; height: 150px; left: 42px; top: 96px; border-color: rgba(90,31,42,0.2); }
+      .romantic .branch.b { width: 180px; height: 150px; right: 42px; top: 96px; border-color: rgba(90,31,42,0.2); transform: rotate(-12deg) scaleX(-1); }
+      .romantic .branch.c { width: 220px; height: 100px; left: 50%; bottom: 118px; transform: translateX(-50%) rotate(180deg); border-color: rgba(199,167,106,0.26); }
+
+      .photo-box {
+        position: absolute;
+        left: 50%;
+        top: 20%;
+        transform: translateX(-50%);
+        width: 62%;
+        height: 52%;
+        background: linear-gradient(180deg, rgba(255,255,255,0.35), rgba(215,201,190,0.28));
+        border: 2px solid rgba(199,167,106,0.6);
+        box-shadow: inset 0 0 0 2px rgba(255,255,255,0.24);
+      }
+
+      .classical .photo-box { border-radius: 44% 44% 20% 20% / 20% 20% 18% 18%; }
+      .modern .photo-box { border-radius: 18px; border-width: 1.5px; }
+      .romantic .photo-box { border-radius: 48% 48% 30% 30% / 30% 30% 22% 22%; }
+
+      .photo-box::before {
+        content: "";
+        position: absolute;
+        inset: 16px;
+        border: 1px solid rgba(199,167,106,0.26);
+      }
+
+      .title-block {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        width: 78%;
+      }
+
+      .classical .title-block { top: 28px; }
+      .modern .title-block { top: 34px; }
+      .romantic .title-block { top: 26px; }
+
+      .mini-tag {
+        font-size: 0.64rem;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: rgba(90,31,42,0.75);
+        margin-bottom: 12px;
+      }
+
+      .name-dummy {
+        height: 80px;
+        border: 1px solid rgba(199,167,106,0.18);
+        background: rgba(255,255,255,0.06);
+        border-radius: 12px;
+      }
+
+      .bottom-zone {
+        position: absolute;
+        left: 50%;
+        bottom: 76px;
+        transform: translateX(-50%);
+        width: 76%;
+      }
+
+      .date-dummy {
+        margin: 0 auto 18px;
+        height: 24px;
+        width: 40%;
+        border-radius: 999px;
+        background: rgba(199,167,106,0.18);
+      }
+
+      .info-stack {
+        display: grid;
+        gap: 12px;
+      }
+
+      .info-line {
+        height: 18px;
+        border-radius: 999px;
+        background: rgba(90,31,42,0.08);
+      }
+
+      .info-line:nth-child(2n) {
+        background: rgba(199,167,106,0.1);
+      }
+
+      .classical .info-line { width: 72%; margin: 0 auto; }
+      .modern .info-line { width: 86%; margin: 0 auto; }
+      .romantic .info-line { width: 80%; margin: 0 auto; }
+
+      .design-notes {
+        margin-top: 12px;
+        padding-top: 12px;
+        font-size: 0.86rem;
+        line-height: 1.6;
+        color: #4d3d3a;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <h1>Luxury Wedding Visual Concepts</h1>
+      <p class="subtitle">
+        Three premium luxury concepts grounded in the locked wedding identity, designed to support a static PNG, animated MP4, and future mobile interactive invitation while keeping the final wording intentionally out of the artwork.
+      </p>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <div class="concept-title">Concept A — Classic Luxury</div>
+          <div class="canvas classical">
+            <div class="decor branch a"></div>
+            <div class="decor branch b"></div>
+            <div class="decor branch c"></div>
+            <div class="title-block">
+              <div class="mini-tag">Wedding</div>
+              <div class="name-dummy"></div>
+            </div>
+            <div class="photo-box"></div>
+            <div class="bottom-zone">
+              <div class="date-dummy"></div>
+              <div class="info-stack">
+                <div class="info-line"></div>
+                <div class="info-line"></div>
+                <div class="info-line"></div>
+              </div>
+            </div>
+          </div>
+          <div class="design-notes">
+            Ivory base with ornate champagne-gold framing, botanical detailing, and a classic oval portrait window.
+          </div>
+        </div>
+
+        <div class="concept-card">
+          <div class="concept-title">Concept B — Modern Luxury</div>
+          <div class="canvas modern">
+            <div class="decor branch a"></div>
+            <div class="decor branch b"></div>
+            <div class="decor branch c"></div>
+            <div class="title-block">
+              <div class="mini-tag">Celebration</div>
+              <div class="name-dummy"></div>
+            </div>
+            <div class="photo-box"></div>
+            <div class="bottom-zone">
+              <div class="date-dummy"></div>
+              <div class="info-stack">
+                <div class="info-line"></div>
+                <div class="info-line"></div>
+                <div class="info-line"></div>
+              </div>
+            </div>
+          </div>
+          <div class="design-notes">
+            Clean and minimal with geometric geometry, controlled luxury framing, and a modern photo presentation.
+          </div>
+        </div>
+
+        <div class="concept-card">
+          <div class="concept-title">Concept C — Romantic Luxury</div>
+          <div class="canvas romantic">
+            <div class="decor branch a"></div>
+            <div class="decor branch b"></div>
+            <div class="decor branch c"></div>
+            <div class="title-block">
+              <div class="mini-tag">Together</div>
+              <div class="name-dummy"></div>
+            </div>
+            <div class="photo-box"></div>
+            <div class="bottom-zone">
+              <div class="date-dummy"></div>
+              <div class="info-stack">
+                <div class="info-line"></div>
+                <div class="info-line"></div>
+                <div class="info-line"></div>
+              </div>
+            </div>
+          </div>
+          <div class="design-notes">
+            warmer romantic treatment with soft burgundy accents and a more intimate portrait frame balancing elegance and emotion.
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luxury Wedding Invitation Master Static Design</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --ivory: #f7f1ea;
+        --ivory-deep: #f0e5dc;
+        --paper: #fbf8f5;
+        --gold: #c7a76a;
+        --gold-soft: #dcc79a;
+        --gold-pale: rgba(199, 167, 106, 0.38);
+        --burgundy: #5a1f2a;
+        --burgundy-soft: rgba(90, 31, 42, 0.18);
+        --charcoal: #2b1f1d;
+        --charcoal-soft: #534640;
+        --taupe: #d7c9be;
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body {
+        margin: 0;
+        min-height: 100%;
+        background: #f2ece7;
+        font-family: 'Inter', sans-serif;
+      }
+
+      body {
+        display: grid;
+        place-items: center;
+        padding: 28px;
+      }
+
+      .card {
+        position: relative;
+        width: min(92vw, 440px);
+        aspect-ratio: 9 / 16;
+        background:
+          radial-gradient(circle at 50% 25%, rgba(255,255,255,0.7), rgba(255,255,255,0) 42%),
+          linear-gradient(180deg, rgba(255,255,255,0.26), rgba(255,255,255,0.08)),
+          var(--ivory);
+        border-radius: 28px;
+        overflow: hidden;
+        box-shadow: 0 30px 52px rgba(43,31,29,0.10);
+        border: 1px solid rgba(199, 167, 106, 0.5);
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        inset: 34px 34px 34px;
+        border: 1px solid var(--gold-pale);
+        border-radius: 18px;
+      }
+
+      .card::after {
+        content: "";
+        position: absolute;
+        inset: 62px 56px 62px;
+        border: 1px solid rgba(199,167,106,0.18);
+        border-radius: 12px;
+      }
+
+      .texture {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(0deg, rgba(255,255,255,0.06), rgba(255,255,255,0.06)),
+          repeating-linear-gradient(
+            0deg,
+            rgba(116,96,82,0.02),
+            rgba(116,96,82,0.02) 1px,
+            transparent 1px,
+            transparent 5px
+          );
+        opacity: 0.8;
+      }
+
+      .top-ornament,
+      .bottom-ornament {
+        position: absolute;
+        pointer-events: none;
+        border: 1px solid rgba(199,167,106,0.5);
+        border-left: none;
+        border-bottom: none;
+        border-radius: 50%;
+      }
+
+      .top-ornament.left {
+        width: 170px;
+        height: 120px;
+        left: 38px;
+        top: 46px;
+        transform: rotate(12deg);
+      }
+
+      .top-ornament.right {
+        width: 170px;
+        height: 120px;
+        right: 38px;
+        top: 46px;
+        transform: rotate(-12deg) scaleX(-1);
+      }
+
+      .bottom-ornament {
+        width: 220px;
+        height: 120px;
+        left: 50%;
+        bottom: 52px;
+        transform: translateX(-50%) rotate(180deg);
+      }
+
+      .corner {
+        position: absolute;
+        width: 78px;
+        height: 78px;
+        border-color: rgba(199,167,106,0.5);
+        border-style: solid;
+        pointer-events: none;
+      }
+
+      .corner.tl { top: 22px; left: 22px; border-width: 1.5px 0 0 1.5px; }
+      .corner.tr { top: 22px; right: 22px; border-width: 1.5px 1.5px 0 0; }
+      .corner.bl { bottom: 22px; left: 22px; border-width: 0 0 1.5px 1.5px; }
+      .corner.br { bottom: 22px; right: 22px; border-width: 0 1.5px 1.5px 0; }
+
+      .heading {
+        position: absolute;
+        top: 90px;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: rgba(90,31,42,0.8);
+        font-size: 0.56rem;
+        font-weight: 500;
+      }
+
+      .photo-frame {
+        position: absolute;
+        left: 50%;
+        top: 136px;
+        transform: translateX(-50%);
+        width: 64%;
+        height: 46%;
+        background: linear-gradient(180deg, rgba(12,18,38,0.95) 0%, rgba(22,32,56,0.8) 100%);
+        border: 2px solid rgba(199, 167, 106, 0.75);
+        border-radius: 46% 46% 18% 18% / 18% 18% 16% 16%;
+        box-shadow: inset 0 0 0 2px rgba(255,255,255,0.18), 0 18px 26px rgba(18,24,37,0.08);
+        overflow: hidden;
+      }
+
+      .photo-frame::before {
+        content: "";
+        position: absolute;
+        inset: 16px;
+        border: 1px solid rgba(199,167,106,0.28);
+        border-radius: inherit;
+      }
+
+      .photo-frame::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at center, transparent 52%, rgba(62,42,35,0.10) 100%);
+      }
+
+      .photo-placeholder {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        color: rgba(255,255,255,0.5);
+        font-size: 0.7rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.08));
+      }
+
+      .names {
+        position: absolute;
+        left: 50%;
+        top: 474px;
+        transform: translateX(-50%);
+        width: 84%;
+        text-align: center;
+        color: var(--burgundy);
+        font-family: 'Cormorant Garamond', serif;
+        font-weight: 600;
+      }
+
+      .names .first {
+        display: block;
+        font-size: clamp(2.5rem, 5vw, 4.2rem);
+        letter-spacing: 0.06em;
+        line-height: 0.9;
+      }
+
+      .names .and {
+        display: block;
+        font-size: clamp(2.2rem, 4vw, 3.2rem);
+        color: var(--gold);
+        line-height: 0.8;
+        margin: 4px 0;
+      }
+
+      .names .second {
+        display: block;
+        font-size: clamp(2.5rem, 5vw, 4.2rem);
+        letter-spacing: 0.06em;
+        line-height: 0.9;
+      }
+
+      .date {
+        position: absolute;
+        left: 50%;
+        top: 690px;
+        transform: translateX(-50%);
+        width: 70%;
+        text-align: center;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--charcoal);
+        font-size: 0.82rem;
+        font-weight: 600;
+      }
+
+      .invite-line {
+        position: absolute;
+        left: 50%;
+        top: 742px;
+        transform: translateX(-50%);
+        width: 72%;
+        text-align: center;
+        font-size: 0.72rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--charcoal-soft);
+        font-weight: 500;
+      }
+
+      .closing-line {
+        position: absolute;
+        left: 50%;
+        bottom: 122px;
+        transform: translateX(-50%);
+        width: 88%;
+        text-align: center;
+        font-size: 0.74rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--burgundy);
+        font-weight: 700;
+      }
+
+      .info-block {
+        position: absolute;
+        left: 50%;
+        bottom: 206px;
+        transform: translateX(-50%);
+        width: 78%;
+        display: grid;
+        gap: 16px;
+      }
+
+      .info-section {
+        display: grid;
+        justify-items: center;
+        gap: 6px;
+        text-align: center;
+      }
+
+      .label {
+        font-size: 0.6rem;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--burgundy);
+      }
+
+      .value {
+        font-size: 0.92rem;
+        line-height: 1.5;
+        color: var(--charcoal);
+        font-weight: 500;
+      }
+
+      .verse {
+        position: absolute;
+        left: 50%;
+        bottom: 90px;
+        transform: translateX(-50%);
+        width: 76%;
+        text-align: center;
+        color: var(--charcoal-soft);
+        font-size: 0.68rem;
+        line-height: 1.7;
+        font-style: italic;
+      }
+
+      .verse strong {
+        display: block;
+        margin-top: 4px;
+        font-style: normal;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-size: 0.66rem;
+        color: var(--burgundy);
+      }
+
+      .divider {
+        position: absolute;
+        left: 50%;
+        bottom: 150px;
+        transform: translateX(-50%);
+        width: 70%;
+        height: 1px;
+        background: rgba(199,167,106,0.45);
+      }
+
+      .divider::before,
+      .divider::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 10px;
+        height: 10px;
+        border: 1px solid rgba(199,167,106,0.5);
+        border-radius: 50%;
+        background: rgba(255,255,255,0.2);
+      }
+
+      .divider::before { left: 18px; }
+      .divider::after { right: 18px; }
+
+      @media (max-width: 400px) {
+        .names { top: 440px; }
+        .date { top: 660px; }
+        .invite-line { top: 722px; }
+        .photo-frame { height: 42%; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card" aria-label="Luxury master static wedding invitation">
+      <div class="texture"></div>
+      <div class="corner tl"></div>
+      <div class="corner tr"></div>
+      <div class="corner bl"></div>
+      <div class="corner br"></div>
+      <div class="top-ornament left"></div>
+      <div class="top-ornament right"></div>
+      <div class="heading">Together with their families</div>
+
+      <div class="photo-frame" aria-label="Couple photograph">
+        <div class="photo-placeholder">Photo</div>
+      </div>
+
+      <div class="names">
+        <span class="first">MUTAKULWA MUBITA</span>
+        <span class="and">&amp;</span>
+        <span class="second">ROBERT SINGOGO</span>
+      </div>
+
+      <div class="date">30 OCTOBER 2026</div>
+      <div class="invite-line">invite you to celebrate their wedding</div>
+
+      <div class="info-block">
+        <div class="info-section">
+          <div class="label">Church Service</div>
+          <div class="value">Kalulushi New Apostolic Church</div>
+        </div>
+        <div class="info-section">
+          <div class="label">Reception</div>
+          <div class="value">Kalulushi Municipal Council Civic Centre<br>Main Hall</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="verse">
+        “Above all, put on love, which binds everything together in perfect harmony.”
+        <strong>Colossians 3:14</strong>
+      </div>
+
+      <div class="closing-line">We look forward to celebrating with you</div>
+
+      <div class="bottom-ornament"></div>
+    </div>
+  </body>
+</html>

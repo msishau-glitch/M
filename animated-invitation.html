@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animated Wedding Invitation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --ivory: #f7f1ea;
+        --ivory-deep: #f0e5dc;
+        --paper: #fbf8f5;
+        --gold: #c7a76a;
+        --gold-soft: #dcc79a;
+        --gold-pale: rgba(199, 167, 106, 0.38);
+        --burgundy: #5a1f2a;
+        --burgundy-soft: rgba(90, 31, 42, 0.18);
+        --charcoal: #2b1f1d;
+        --charcoal-soft: #534640;
+        --taupe: #d7c9be;
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body {
+        margin: 0;
+        min-height: 100%;
+        background: #f3ece7;
+        font-family: 'Inter', sans-serif;
+      }
+
+      body {
+        display: grid;
+        place-items: center;
+        padding: 24px;
+      }
+
+      .stage {
+        position: relative;
+        width: min(92vw, 440px);
+        aspect-ratio: 9 / 16;
+        overflow: hidden;
+        border-radius: 28px;
+        background:
+          radial-gradient(circle at 50% 24%, rgba(255,255,255,0.72), rgba(255,255,255,0) 38%),
+          linear-gradient(180deg, rgba(255,255,255,0.28), rgba(255,255,255,0.08)),
+          var(--ivory);
+        border: 1px solid rgba(199,167,106,0.5);
+        box-shadow: 0 32px 52px rgba(43,31,29,0.12);
+      }
+
+      .frame,
+      .inner-frame,
+      .ornament,
+      .corner,
+      .photo-frame,
+      .names,
+      .date,
+      .invite-line,
+      .info-block,
+      .verse,
+      .closing-line {
+        animation-fill-mode: both;
+      }
+
+      .scene {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        animation: sceneFade 36s infinite;
+      }
+
+      .scene:nth-child(1) { animation-delay: 0s; }
+      .scene:nth-child(2) { animation-delay: 4s; }
+      .scene:nth-child(3) { animation-delay: 8s; }
+      .scene:nth-child(4) { animation-delay: 12.5s; }
+      .scene:nth-child(5) { animation-delay: 17s; }
+      .scene:nth-child(6) { animation-delay: 22s; }
+      .scene:nth-child(7) { animation-delay: 27s; }
+      .scene:nth-child(8) { animation-delay: 32s; }
+
+      .scene-inner {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(180deg, rgba(255,255,255,0.1), rgba(255,255,255,0.06)),
+          var(--ivory);
+      }
+
+      .texture {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(0deg, rgba(255,255,255,0.05), rgba(255,255,255,0.05)),
+          repeating-linear-gradient(0deg, rgba(116,96,82,0.02), rgba(116,96,82,0.02) 1px, transparent 1px, transparent 5px);
+      }
+
+      .frame {
+        position: absolute;
+        inset: 32px;
+        border: 1px solid rgba(199,167,106,0.38);
+        border-radius: 20px;
+      }
+
+      .inner-frame {
+        position: absolute;
+        inset: 62px 60px 62px 60px;
+        border: 1px solid rgba(199,167,106,0.18);
+        border-radius: 12px;
+      }
+
+      .corner {
+        position: absolute;
+        width: 78px;
+        height: 78px;
+        border-color: rgba(199,167,106,0.5);
+        border-style: solid;
+      }
+
+      .corner.tl { top: 20px; left: 20px; border-width: 1.5px 0 0 1.5px; }
+      .corner.tr { top: 20px; right: 20px; border-width: 1.5px 1.5px 0 0; }
+      .corner.bl { bottom: 20px; left: 20px; border-width: 0 0 1.5px 1.5px; }
+      .corner.br { bottom: 20px; right: 20px; border-width: 0 1.5px 1.5px 0; }
+
+      .ornament {
+        position: absolute;
+        border: 1px solid rgba(199,167,106,0.5);
+        border-bottom: none;
+        border-left: none;
+        border-radius: 50%;
+      }
+
+      .ornament.l { width: 170px; height: 120px; left: 42px; top: 40px; transform: rotate(12deg); }
+      .ornament.r { width: 170px; height: 120px; right: 42px; top: 40px; transform: rotate(-12deg) scaleX(-1); }
+      .ornament.b { width: 220px; height: 120px; left: 50%; bottom: 58px; transform: translateX(-50%) rotate(180deg); }
+
+      .label {
+        position: absolute;
+        top: 92px;
+        left: 50%;
+        transform: translateX(-50%);
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        font-size: 0.56rem;
+        color: rgba(90,31,42,0.8);
+        font-weight: 500;
+      }
+
+      .photo-frame {
+        position: absolute;
+        left: 50%;
+        top: 138px;
+        transform: translateX(-50%);
+        width: 64%;
+        height: 46%;
+        background: linear-gradient(180deg, rgba(12,18,38,0.95) 0%, rgba(22,32,56,0.8) 100%);
+        border: 2px solid rgba(199,167,106,0.7);
+        border-radius: 46% 46% 18% 18% / 18% 18% 16% 16%;
+        box-shadow: inset 0 0 0 2px rgba(255,255,255,0.18), 0 18px 26px rgba(18,24,37,0.08);
+        overflow: hidden;
+      }
+
+      .photo-frame::before {
+        content: "";
+        position: absolute;
+        inset: 16px;
+        border: 1px solid rgba(199,167,106,0.28);
+        border-radius: inherit;
+      }
+
+      .photo-placeholder {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        font-size: 0.7rem;
+        letter-spacing: 0.12em;
+        color: rgba(255,255,255,0.48);
+        text-transform: uppercase;
+        background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.08));
+      }
+
+      .names {
+        position: absolute;
+        left: 50%;
+        top: 472px;
+        transform: translateX(-50%);
+        width: 84%;
+        text-align: center;
+        color: var(--burgundy);
+        font-family: 'Cormorant Garamond', serif;
+        font-weight: 600;
+      }
+
+      .names .line1,
+      .names .line2 {
+        display: block;
+        letter-spacing: 0.06em;
+        font-size: clamp(2.5rem, 5vw, 4.2rem);
+        line-height: 0.9;
+      }
+
+      .names .and {
+        display: block;
+        margin: 4px 0;
+        font-size: clamp(2.2rem, 4vw, 3.2rem);
+        color: var(--gold);
+        line-height: 0.8;
+      }
+
+      .date {
+        position: absolute;
+        left: 50%;
+        top: 692px;
+        transform: translateX(-50%);
+        width: 70%;
+        text-align: center;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--charcoal);
+        font-size: 0.82rem;
+        font-weight: 600;
+      }
+
+      .invite-line {
+        position: absolute;
+        left: 50%;
+        top: 744px;
+        transform: translateX(-50%);
+        width: 72%;
+        text-align: center;
+        font-size: 0.72rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--charcoal-soft);
+        font-weight: 500;
+      }
+
+      .info-block {
+        position: absolute;
+        left: 50%;
+        bottom: 206px;
+        transform: translateX(-50%);
+        width: 78%;
+        display: grid;
+        gap: 16px;
+      }
+
+      .info-section {
+        display: grid;
+        gap: 6px;
+        justify-items: center;
+        text-align: center;
+      }
+
+      .info-section .label {
+        position: static;
+        transform: none;
+        font-size: 0.6rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--burgundy);
+        font-weight: 600;
+      }
+
+      .info-section .value {
+        font-size: 0.92rem;
+        line-height: 1.5;
+        color: var(--charcoal);
+        font-weight: 500;
+      }
+
+      .divider {
+        position: absolute;
+        left: 50%;
+        bottom: 150px;
+        transform: translateX(-50%);
+        width: 70%;
+        height: 1px;
+        background: rgba(199,167,106,0.45);
+      }
+
+      .divider::before,
+      .divider::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 10px;
+        height: 10px;
+        border: 1px solid rgba(199,167,106,0.5);
+        border-radius: 50%;
+        background: rgba(255,255,255,0.2);
+      }
+
+      .divider::before { left: 18px; }
+      .divider::after { right: 18px; }
+
+      .verse {
+        position: absolute;
+        left: 50%;
+        bottom: 100px;
+        transform: translateX(-50%);
+        width: 76%;
+        text-align: center;
+        color: var(--charcoal-soft);
+        font-size: 0.68rem;
+        line-height: 1.7;
+        font-style: italic;
+      }
+
+      .verse strong {
+        display: block;
+        margin-top: 4px;
+        font-style: normal;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-size: 0.66rem;
+        color: var(--burgundy);
+      }
+
+      .closing-line {
+        position: absolute;
+        left: 50%;
+        bottom: 122px;
+        transform: translateX(-50%);
+        width: 88%;
+        text-align: center;
+        font-size: 0.74rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--burgundy);
+        font-weight: 700;
+      }
+
+      @keyframes sceneFade {
+        0%, 10% { opacity: 1; }
+        12%, 100% { opacity: 0; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="stage" aria-label="Animated luxury wedding invitation preview">
+      <div class="scene">
+        <div class="scene-inner">
+          <div class="texture"></div>
+          <div class="corner tl"></div>
+          <div class="corner tr"></div>
+          <div class="corner bl"></div>
+          <div class="corner br"></div>
+          <div class="frame"></div>
+          <div class="inner-frame"></div>
+          <div class="ornament l"></div>
+          <div class="ornament r"></div>
+          <div class="label">Together with their families</div>
+        </div>
+      </div>
+
+      <div class="scene">
+        <div class="scene-inner">
+          <div class="texture"></div>
+          <div class="corner tl"></div>
+          <div class="corner tr"></div>
+          <div class="corner bl"></div>
+          <div class="corner br"></div>
+          <div class="frame"></div>
+          <div class="inner-frame"></div>
+          <div class="ornament l"></div>
+          <div class="ornament r"></div>
+          <div class="photo-frame"><div class="photo-placeholder">Photo</div></div>
+          <div class="names">
+            <span class="line1">MUTAKULWA MUBITA</span>
+            <span class="and">&amp;</span>
+            <span class="line2">ROBERT SINGOGO</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="scene">
+        <div class="scene-inner">
+          <div class="texture"></div>
+          <div class="corner tl"></div>
+          <div class="corner tr"></div>
+          <div class="corner bl"></div>
+          <div class="corner br"></div>
+          <div class="frame"></div>
+          <div class="inner-frame"></div>
+          <div class="ornament l"></div>
+          <div class="ornament r"></div>
+          <div class="date">30 OCTOBER 2026</div>
+        </div>
+      </div>
+
+      <div class="scene">
+        <div class="scene-inner">
+          <div class="texture"></div>
+          <div class="corner tl"></div>
+          <div class="corner tr"></div>
+          <div class="corner bl"></div>
+          <div class="corner br"></div>
+          <div class="frame"></div>
+          <div class="inner-frame"></div>
+          <div class="ornament l"></div>
+          <div class="ornament r"></div>
+          <div class="invite-line">invite you to celebrate their wedding</div>
+        </div>
+      </div>
+
+      <div class="scene">
+        <div class="scene-inner">
+          <div class="texture"></div>
+          <div class="corner tl"></div>
+          <div class="corner tr"></div>
+          <div class="corner bl"></div>
+          <div class="corner br"></div>
+          <div class="frame"></div>
+          <div class="inner-frame"></div>
+          <div class="ornament l"></div>
+          <div class="ornament r"></div>
+          <div class="info-block">
+            <div class="info-section">
+              <div class="label">Church Service</div>
+              <div class="value">Kalulushi New Apostolic Church</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scene">
+        <div class="scene-inner">
+          <div class="texture"></div>
+          <div class="corner tl"></div>
+          <div class="corner tr"></div>
+          <div class="corner bl"></div>
+          <div class="corner br"></div>
+          <div class="frame"></div>
+          <div class="inner-frame"></div>
+          <div class="ornament l"></div>
+          <div class="ornament r"></div>
+          <div class="info-block">
+            <div class="info-section">
+              <div class="label">Reception</div>
+              <div class="value">Kalulushi Municipal Council Civic Centre<br>Main Hall</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scene">
+        <div class="scene-inner">
+          <div class="texture"></div>
+          <div class="corner tl"></div>
+          <div class="corner tr"></div>
+          <div class="corner bl"></div>
+          <div class="corner br"></div>
+          <div class="frame"></div>
+          <div class="inner-frame"></div>
+          <div class="ornament l"></div>
+          <div class="ornament r"></div>
+          <div class="divider"></div>
+          <div class="verse">
+            “Above all, put on love, which binds everything together in perfect harmony.”
+            <strong>Colossians 3:14</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="scene">
+        <div class="scene-inner">
+          <div class="texture"></div>
+          <div class="corner tl"></div>
+          <div class="corner tr"></div>
+          <div class="corner bl"></div>
+          <div class="corner br"></div>
+          <div class="frame"></div>
+          <div class="inner-frame"></div>
+          <div class="ornament l"></div>
+          <div class="ornament r"></div>
+          <div class="closing-line">We look forward to celebrating with you</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

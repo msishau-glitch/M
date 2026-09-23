@@ -1,0 +1,14 @@
+{
+  "name": "electronic-wedding-invitation",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Mobile-first wedding invitation website with PNG and MP4 export",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "devDependencies": {
+    "ffmpeg-static": "^5.3.0",
+    "playwright": "^1.63.0"
+  }
+}

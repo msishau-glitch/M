@@ -1,0 +1,57 @@
+<svg width="1000" height="1000" viewBox="0 0 1000 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="goldTone" x1="0" y1="0" x2="1" y2="0" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#C7A76A" stop-opacity="0.92"/>
+      <stop offset="0.5" stop-color="#D8C39A" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#C7A76A" stop-opacity="0.92"/>
+    </linearGradient>
+    <linearGradient id="botanicalTone" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#A7A08A" stop-opacity="0.72"/>
+      <stop offset="1" stop-color="#7E776C" stop-opacity="0.8"/>
+    </linearGradient>
+  </defs>
+
+  <g opacity="0.95">
+    <path d="M500 120C500 120 500 220 500 300C500 410 463 495 395 560" stroke="url(#goldTone)" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M500 120C500 120 500 220 500 300C500 410 537 495 605 560" stroke="url(#goldTone)" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M500 258C500 258 478 325 442 350C410 372 377 382 342 386" stroke="url(#botanicalTone)" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M500 258C500 258 522 325 558 350C590 372 623 382 658 386" stroke="url(#botanicalTone)" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M500 368C500 368 474 426 436 462C404 491 374 518 338 549" stroke="url(#botanicalTone)" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M500 368C500 368 526 426 564 462C596 491 626 518 662 549" stroke="url(#botanicalTone)" stroke-width="1.8" stroke-linecap="round"/>
+  </g>
+
+  <g opacity="0.9">
+    <path d="M392 560C360 545 331 539 304 548C272 558 252 583 245 610C271 611 292 619 311 636C331 655 345 675 354 704" stroke="url(#botanicalTone)" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M608 560C640 545 669 539 696 548C728 558 748 583 755 610C729 611 708 619 689 636C669 655 655 675 646 704" stroke="url(#botanicalTone)" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M340 693C372 681 391 680 412 691C429 701 442 718 448 741" stroke="url(#goldTone)" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M660 693C628 681 609 680 588 691C571 701 558 718 552 741" stroke="url(#goldTone)" stroke-width="1.5" stroke-linecap="round"/>
+  </g>
+
+  <g opacity="0.8">
+    <path d="M500 416C472 430 453 450 443 474" stroke="url(#goldTone)" stroke-width="1.4" stroke-linecap="round"/>
+    <path d="M500 416C528 430 547 450 557 474" stroke="url(#goldTone)" stroke-width="1.4" stroke-linecap="round"/>
+  </g>
+
+  <g opacity="0.82">
+    <path d="M478 262C456 280 448 299 452 318C458 341 482 352 500 362C518 352 542 341 548 318C552 299 544 280 522 262" stroke="url(#goldTone)" stroke-width="1.3" stroke-linecap="round"/>
+    <path d="M463 463C438 479 421 496 412 520C407 531 409 541 420 552C436 564 460 563 482 550" stroke="url(#goldTone)" stroke-width="1.3" stroke-linecap="round"/>
+    <path d="M537 463C562 479 579 496 588 520C593 531 591 541 580 552C564 564 540 563 518 550" stroke="url(#goldTone)" stroke-width="1.3" stroke-linecap="round"/>
+  </g>
+
+  <g opacity="0.8" fill="url(#goldTone)">
+    <circle cx="500" cy="120" r="4.5"/>
+    <circle cx="500" cy="258" r="4"/>
+    <circle cx="500" cy="368" r="4"/>
+    <circle cx="342" cy="386" r="3.5"/>
+    <circle cx="658" cy="386" r="3.5"/>
+    <circle cx="338" cy="549" r="3.5"/>
+    <circle cx="662" cy="549" r="3.5"/>
+  </g>
+
+  <g opacity="0.6" fill="url(#botanicalTone)">
+    <circle cx="410" cy="512" r="2.8"/>
+    <circle cx="590" cy="512" r="2.8"/>
+    <circle cx="448" cy="741" r="2.7"/>
+    <circle cx="552" cy="741" r="2.7"/>
+  </g>
+</svg>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Private RSVP Dashboard</title>
+    <meta name="description" content="Private wedding RSVP dashboard for organisers only." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --ivory: #f7f1ea;
+        --paper: #fbf8f5;
+        --gold: #c7a76a;
+        --navy: #1f2332;
+        --navy-soft: #454d60;
+        --burgundy: #5a1f2a;
+        --charcoal: #2b1f1d;
+        --border: rgba(199, 167, 106, 0.32);
+        --shadow: rgba(43,31,29,0.07);
+        --success: #1e6057;
+        --danger: #8d2b2b;
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: 'Inter', sans-serif;
+        background: linear-gradient(180deg, #f8f4f0 0%, #f2e8e2 100%);
+        color: var(--charcoal);
+      }
+      .admin-shell {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 32px 18px 48px;
+      }
+      .admin-card {
+        background: rgba(255,255,255,0.36);
+        border: 1px solid var(--border);
+        border-radius: 28px;
+        box-shadow: 0 18px 28px var(--shadow);
+        padding: 28px 22px;
+      }
+      h1, h2, h3 {
+        font-family: 'Cormorant Garamond', serif;
+        color: var(--burgundy);
+      }
+      h1 { margin: 0 0 12px; font-size: clamp(2.5rem, 5vw, 4rem); }
+      .subtitle {
+        margin: 0 0 24px;
+        color: var(--navy-soft);
+      }
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 14px;
+        margin-bottom: 24px;
+      }
+      .stat-box {
+        padding: 18px 16px;
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        background: rgba(255,255,255,0.16);
+      }
+      .stat-label {
+        font-size: 0.62rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--navy-soft);
+      }
+      .stat-value {
+        display: block;
+        margin-top: 8px;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: clamp(2rem, 4vw, 2.8rem);
+        color: var(--burgundy);
+      }
+      .table-wrap {
+        overflow-x: auto;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 12px;
+      }
+      th, td {
+        padding: 12px 10px;
+        border-bottom: 1px solid rgba(199,167,106,0.24);
+        text-align: left;
+        vertical-align: top;
+      }
+      th {
+        font-size: 0.7rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--burgundy);
+      }
+      .badge {
+        display: inline-block;
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .badge.attending { background: rgba(30, 96, 87, 0.08); color: var(--success); }
+      .badge.not-attending { background: rgba(141, 43, 43, 0.08); color: var(--danger); }
+      .status-box {
+        margin-top: 18px;
+        min-height: 24px;
+        color: var(--danger);
+      }
+      .config-form {
+        margin: 22px 0 26px;
+        padding: 20px 18px;
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        background: rgba(255,255,255,0.14);
+      }
+      .config-form h2 {
+        margin: 0 0 18px;
+        font-size: clamp(2rem, 4vw, 2.8rem);
+      }
+      .form-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 14px;
+      }
+      .config-form label {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--burgundy);
+      }
+      .config-form input,
+      .config-form textarea,
+      .config-form select,
+      .config-form button {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 12px 14px;
+        font: inherit;
+      }
+      .config-form textarea {
+        resize: vertical;
+      }
+      .full-span {
+        grid-column: 1 / -1;
+      }
+      .form-actions {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 18px;
+      }
+      .form-actions button {
+        background: linear-gradient(180deg, rgba(255,255,255,0.26), rgba(199,167,106,0.14));
+        color: var(--burgundy);
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+      .access-gate {
+        max-width: 420px;
+        margin: 64px auto 0;
+        padding: 26px 22px;
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        background: rgba(255,255,255,0.38);
+        box-shadow: 0 18px 28px var(--shadow);
+      }
+      .access-gate label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--burgundy);
+      }
+      .access-gate input,
+      .access-gate button {
+        width: 100%;
+        min-height: 48px;
+        border-radius: 14px;
+        border: 1px solid var(--border);
+        font: inherit;
+      }
+      .access-gate input { padding: 12px 14px; }
+      .access-gate button {
+        margin-top: 12px;
+        background: linear-gradient(180deg, rgba(255,255,255,0.3), rgba(199,167,106,0.12));
+        color: var(--burgundy);
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+      @media (max-width: 640px) {
+        .admin-shell { padding-inline: 12px; }
+        .admin-card { padding: 20px 14px; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="admin-shell">
+      <div id="access-gate" class="access-gate">
+        <h1>Private RSVP Dashboard</h1>
+        <label for="admin-passcode">Enter organiser passcode</label>
+        <input id="admin-passcode" type="password" placeholder="Passcode" />
+        <button id="unlock-admin" type="button">Unlock</button>
+      </div>
+
+      <section id="admin-content" class="admin-card" hidden>
+        <h1>Private RSVP Dashboard</h1>
+        <p class="subtitle">Authorised organiser view only.</p>
+
+        <form id="wedding-config-form" class="config-form">
+          <h2>Wedding Details</h2>
+
+          <div class="form-grid">
+            <label>
+              <span>Bride's Name</span>
+              <input name="brideName" type="text" />
+            </label>
+            <label>
+              <span>Groom's Name</span>
+              <input name="groomName" type="text" />
+            </label>
+            <label class="full-span">
+              <span>Wedding Date</span>
+              <input name="weddingDate" type="date" />
+            </label>
+            <label>
+              <span>Ceremony Time</span>
+              <input name="ceremonyTime" type="text" />
+            </label>
+            <label>
+              <span>Ceremony Venue</span>
+              <input name="ceremonyVenue" type="text" />
+            </label>
+            <label>
+              <span>Reception Time</span>
+              <input name="receptionTime" type="text" />
+            </label>
+            <label>
+              <span>Reception Venue</span>
+              <input name="receptionVenue" type="text" />
+            </label>
+            <label>
+              <span>RSVP Name</span>
+              <input name="rsvpName" type="text" />
+            </label>
+            <label>
+              <span>RSVP Phone</span>
+              <input name="rsvpPhone" type="tel" />
+            </label>
+            <label>
+              <span>Dress Code</span>
+              <input name="dressCode" type="text" />
+            </label>
+            <label class="full-span">
+              <span>Special Message</span>
+              <textarea name="specialMessage" rows="3"></textarea>
+            </label>
+            <label class="full-span">
+              <span>Bible Verse / Quote</span>
+              <textarea name="quote" rows="2"></textarea>
+            </label>
+            <label>
+              <span>Quote Source</span>
+              <input name="quoteSource" type="text" />
+            </label>
+            <label>
+              <span>Do you have couple photos?</span>
+              <select name="hasPhotos">
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+              </select>
+            </label>
+            <label>
+              <span>Number of Photos</span>
+              <input name="photoCount" type="number" min="0" value="0" />
+            </label>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit">Save wedding details</button>
+          </div>
+        </form>
+
+        <div class="stats-grid">
+          <div class="stat-box">
+            <span class="stat-label">Total responses</span>
+            <span class="stat-value" id="total-responses">0</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-label">Attending</span>
+            <span class="stat-value" id="attending-count">0</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-label">Not attending</span>
+            <span class="stat-value" id="not-attending-count">0</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-label">Expected guests</span>
+            <span class="stat-value" id="expected-guests">0</span>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Guests</th>
+                <th>Message</th>
+                <th>Submitted</th>
+              </tr>
+            </thead>
+            <tbody id="responses-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="admin.js"></script>
+  </body>
+</html>

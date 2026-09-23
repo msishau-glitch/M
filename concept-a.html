@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Concept A - Classic Luxury</title>
+    <style>
+      :root {
+        --ivory: #f7f1ea;
+        --ivory-deep: #f0e5dc;
+        --gold: #c7a76a;
+        --gold-soft: #dcc79a;
+        --gold-pale: rgba(199, 167, 106, 0.35);
+        --burgundy: #5a1f2a;
+        --burgundy-soft: rgba(90, 31, 42, 0.22);
+        --charcoal: #2b1f1d;
+        --taupe: #d7c9be;
+        --paper: rgba(255,255,255,0.2);
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body {
+        margin: 0;
+        min-height: 100%;
+        background: #eee7e1;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        display: grid;
+        place-items: center;
+        padding: 28px;
+      }
+
+      .frame {
+        position: relative;
+        width: min(92vw, 440px);
+        aspect-ratio: 9 / 16;
+        background:
+          radial-gradient(circle at 50% 28%, rgba(255,255,255,0.7), rgba(255,255,255,0) 42%),
+          linear-gradient(180deg, rgba(255,255,255,0.2), rgba(255,255,255,0.12)),
+          var(--ivory);
+        border-radius: 26px;
+        overflow: hidden;
+        box-shadow: 0 26px 46px rgba(43,31,29,0.10);
+        border: 1px solid rgba(199, 167, 106, 0.48);
+      }
+
+      .frame::before {
+        content: "";
+        position: absolute;
+        inset: 34px 34px 34px;
+        border: 1px solid var(--gold-pale);
+        border-radius: 18px;
+      }
+
+      .frame::after {
+        content: "";
+        position: absolute;
+        inset: 56px 54px 56px;
+        border: 1px solid rgba(199, 167, 106, 0.18);
+        border-radius: 12px;
+      }
+
+      .texture {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(0deg, rgba(255,255,255,0.08), rgba(255,255,255,0.08)),
+          repeating-linear-gradient(
+            0deg,
+            rgba(116,96,82,0.018),
+            rgba(116,96,82,0.018) 1px,
+            transparent 1px,
+            transparent 4px
+          );
+        opacity: 0.7;
+      }
+
+      .ornament {
+        position: absolute;
+        pointer-events: none;
+        border: 1px solid rgba(199, 167, 106, 0.5);
+        border-color: rgba(199, 167, 106, 0.5);
+        border-bottom: none;
+        border-left: none;
+        border-radius: 50%;
+      }
+
+      .ornament.top-left {
+        width: 180px;
+        height: 120px;
+        left: 32px;
+        top: 42px;
+        transform: rotate(10deg);
+      }
+
+      .ornament.top-right {
+        width: 180px;
+        height: 120px;
+        right: 32px;
+        top: 42px;
+        transform: rotate(-10deg) scaleX(-1);
+      }
+
+      .ornament.bottom {
+        width: 220px;
+        height: 120px;
+        left: 50%;
+        bottom: 52px;
+        transform: translateX(-50%) rotate(180deg);
+      }
+
+      .label {
+        position: absolute;
+        top: 108px;
+        left: 50%;
+        transform: translateX(-50%);
+        letter-spacing: 0.26em;
+        text-transform: uppercase;
+        font-size: 0.56rem;
+        color: rgba(90, 31, 42, 0.78);
+      }
+
+      .photo-wrap {
+        position: absolute;
+        left: 50%;
+        top: 146px;
+        transform: translateX(-50%);
+        width: 58%;
+        height: 48%;
+        background: linear-gradient(180deg, rgba(255,255,255,0.28), rgba(215,201,190,0.18));
+        border: 2px solid rgba(199, 167, 106, 0.7);
+        border-radius: 46% 46% 19% 19% / 20% 20% 19% 19%;
+        box-shadow: inset 0 0 0 2px rgba(255,255,255,0.31);
+      }
+
+      .photo-wrap::before {
+        content: "";
+        position: absolute;
+        inset: 16px;
+        border: 1px solid rgba(199,167,106,0.28);
+        border-radius: inherit;
+      }
+
+      .photo-wrap::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(84,62,52,0.08));
+      }
+
+      .vignette {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at center, transparent 50%, rgba(70,48,38,0.08) 100%);
+      }
+
+      .top-corners {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+
+      .top-corners::before,
+      .top-corners::after {
+        content: "";
+        position: absolute;
+        width: 72px;
+        height: 72px;
+        border-color: rgba(199, 167, 106, 0.55);
+        border-style: solid;
+        top: 20px;
+      }
+
+      .top-corners::before {
+        left: 20px;
+        border-width: 1.5px 0 0 1.5px;
+      }
+
+      .top-corners::after {
+        right: 20px;
+        border-width: 1.5px 1.5px 0 0;
+      }
+
+      .bottom-corners {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+
+      .bottom-corners::before,
+      .bottom-corners::after {
+        content: "";
+        position: absolute;
+        width: 72px;
+        height: 72px;
+        border-color: rgba(199, 167, 106, 0.55);
+        border-style: solid;
+        bottom: 20px;
+      }
+
+      .bottom-corners::before {
+        left: 20px;
+        border-width: 0 0 1.5px 1.5px;
+      }
+
+      .bottom-corners::after {
+        right: 20px;
+        border-width: 0 1.5px 1.5px 0;
+      }
+
+      .footer-line {
+        position: absolute;
+        left: 50%;
+        bottom: 110px;
+        transform: translateX(-50%);
+        width: 72%;
+        height: 1px;
+        background: rgba(199,167,106,0.45);
+      }
+
+      .footer-line::before,
+      .footer-line::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 10px;
+        height: 10px;
+        border: 1px solid rgba(199,167,106,0.5);
+        border-radius: 50%;
+      }
+
+      .footer-line::before { left: 18px; }
+      .footer-line::after { right: 18px; }
+
+      .placeholder {
+        position: absolute;
+        left: 50%;
+        bottom: 150px;
+        transform: translateX(-50%);
+        width: 75%;
+        height: 120px;
+        background: rgba(255,255,255,0.12);
+        border-radius: 16px;
+        border: 1px solid rgba(199,167,106,0.16);
+      }
+
+      .placeholder::before,
+      .placeholder::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 999px;
+        background: rgba(199,167,106,0.18);
+      }
+
+      .placeholder::before {
+        width: 42%;
+        height: 18px;
+        top: 24px;
+      }
+
+      .placeholder::after {
+        width: 65%;
+        height: 12px;
+        top: 60px;
+        opacity: 0.7;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="frame" aria-label="Classic luxury wedding concept A with empty wedding photo frame and ornamental luxury background">
+      <div class="texture"></div>
+      <div class="top-corners"></div>
+      <div class="bottom-corners"></div>
+      <div class="ornament top-left"></div>
+      <div class="ornament top-right"></div>
+      <div class="ornament bottom"></div>
+      <div class="label">Wedding</div>
+      <div class="photo-wrap"></div>
+      <div class="vignette"></div>
+      <div class="placeholder"></div>
+      <div class="footer-line"></div>
+    </div>
+  </body>
+</html>

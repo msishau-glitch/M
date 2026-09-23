@@ -1,0 +1,8 @@
+<svg width="800" height="1000" viewBox="0 0 800 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="1000" fill="#F6F0EB"/>
+  <rect x="30" y="30" width="740" height="940" rx="36" fill="#FBF8F5" stroke="#C7A76A" stroke-width="3"/>
+  <rect x="120" y="120" width="560" height="640" rx="32" fill="#E7D8C8"/>
+  <circle cx="400" cy="400" r="165" fill="#F0E4DA" opacity="0.7"/>
+  <path d="M220 760C255 670 320 620 400 620C480 620 545 670 580 760H220Z" fill="#5A1F2A" opacity="0.75"/>
+  <text x="400" y="860" text-anchor="middle" fill="#5A1F2A" font-size="30" font-family="Georgia, 'Times New Roman', serif" letter-spacing="4">PHOTO</text>
+</svg>
